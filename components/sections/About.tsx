@@ -19,9 +19,9 @@ const CONTENT = {
 
 const FLOAT_STATS = [
   { icon: BarChart3, value: '99.7%', label: 'Analysis accuracy rate',    color: 'text-brand-500' },
-  { icon: Zap,       value: '3.2s',  label: 'Avg. processing time',     color: 'text-accent'    },
+  { icon: Zap,       value: '3.2s',  label: 'Avg. processing time',     color: 'text-brand-500' },
   { icon: Shield,     value: '89%',   label: 'Risk reduction achieved',  color: 'text-brand-500' },
-  { icon: Cpu,       value: '50ms',  label: 'Real-time latency',        color: 'text-accent'    },
+  { icon: Cpu,       value: '50ms',  label: 'Real-time latency',        color: 'text-brand-500' },
 ]
 
 const STATS = [
@@ -80,7 +80,7 @@ export default function About() {
                         <s.icon className={`w-4 h-4 ${s.color}`} />
                       </div>
                       <div>
-                        <div className={`text-sm font-bold ${s.color} leading-none`}>{s.value}</div>
+                        <div className={`text-sm font-semibold ${s.color} leading-none`}>{s.value}</div>
                         <div className="text-xs text-content-muted mt-0.5">{s.label}</div>
                       </div>
                     </div>
@@ -109,20 +109,20 @@ export default function About() {
             <ul className="mt-6 space-y-3 mb-8">
               {CONTENT.values.map(v => (
                 <li key={v} className="flex items-start gap-3 text-sm text-content-primary">
-                  <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
                   <span>{v}</span>
                 </li>
               ))}
             </ul>
 
             <div className="relative inline-flex">
-              <div className="absolute inset-0 bg-brand-500/20 blur-lg rounded-card
-                              scale-110 pointer-events-none" />
+              <div className="absolute inset-0 bg-brand-500/25 blur-xl rounded-md
+                              scale-125 pointer-events-none" />
               <a
                 href={CONTENT.cta.href}
                 className="relative inline-flex items-center gap-2 px-6 py-3 font-body
-                           font-semibold bg-brand-500 text-white rounded-card
-                           hover:bg-brand-600 hover:shadow-glow-sm transition-all ease-expo-out"
+                           font-semibold bg-brand-500 text-content-inverse rounded-md
+                           hover:bg-brand-600 hover:shadow-glow transition-all ease-expo-out"
               >
                 {CONTENT.cta.label}
               </a>

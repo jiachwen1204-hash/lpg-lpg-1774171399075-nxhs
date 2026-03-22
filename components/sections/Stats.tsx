@@ -60,7 +60,7 @@ export default function Stats() {
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(124,58,237,0.3) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)',
           backgroundSize: '28px 28px',
         }}
       />
@@ -73,7 +73,7 @@ export default function Stats() {
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
         <AnimateIn className="text-center mb-16">
-          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-pill
+          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-md
                            px-4 py-1.5 text-xs font-semibold uppercase tracking-widest mb-5">
             By the Numbers
           </span>
@@ -89,14 +89,15 @@ export default function Stats() {
           {stats.map((stat, i) => (
             <AnimateIn key={stat.label} delay={i * 100}>
               <div className="group relative rounded-card-lg bg-surface-raised p-8 text-center
-                              shadow-card hover:shadow-card-lg
+                              shadow-card border border-surface-border/40
+                              hover:shadow-card-lg hover:border-brand-500/40
                               transition-all duration-500 ease-out">
                 <div className="absolute top-0 inset-x-0 h-px
                                 bg-gradient-to-r from-transparent via-brand-500/30 to-transparent
                                 group-hover:via-brand-500/60 group-hover:h-[2px]
                                 transition-all duration-500" />
 
-                <div className="font-heading font-bold text-display-md text-accent
+                <div className="font-heading font-bold text-display-md text-brand-500
                                 mb-3 min-h-[3.5rem] flex items-center justify-center
                                 group-hover:scale-105 transition-transform duration-300">
                   <CountUp target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />

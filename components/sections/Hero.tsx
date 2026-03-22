@@ -1,4 +1,5 @@
 import AnimateIn from '@/components/ui/AnimateIn'
+import CountUp from '@/components/ui/CountUp'
 import { cn } from '@/lib/utils'
 
 const CONTENT = {
@@ -9,10 +10,10 @@ const CONTENT = {
   cta: { label: 'Get Started Now', href: '#contact' },
   secondary: { label: 'Our Solutions', href: '#services' },
   stats: [
-    { value: '$500M+', label: 'Transaction volume', accent: true },
-    { value: '50,000+', label: 'Users protected', accent: false },
-    { value: '99.9%', label: 'Platform uptime', accent: true },
-    { value: '15+', label: 'Countries served', accent: false },
+    { value: 500, prefix: '$', suffix: 'M+', label: 'Transaction volume' },
+    { value: 50000, suffix: '+', label: 'Users protected' },
+    { value: 99.9, suffix: '%', label: 'Platform uptime' },
+    { value: 15, suffix: '+', label: 'Countries served' },
   ],
   credentials: ['SOC 2 Certified', '256-bit Encryption', 'FCA Regulated'],
 }
@@ -23,7 +24,7 @@ export default function Hero() {
       {/* Mesh glow orbs */}
       <div aria-hidden className="absolute top-[-15%] left-[-8%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-[200px] animate-pulse-glow pointer-events-none" />
       <div aria-hidden className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-brand-500/8 blur-[160px] pointer-events-none" />
-      <div aria-hidden className="absolute top-[40%] right-[20%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+      <div aria-hidden className="absolute top-[40%] right-[20%] w-[400px] h-[400px] rounded-full bg-accent/8 blur-[120px] pointer-events-none" />
 
       {/* Dot grid texture */}
       <div aria-hidden className="absolute inset-0 pointer-events-none opacity-[0.08]" style={{
@@ -38,35 +39,35 @@ export default function Hero() {
           {/* Left — primary content */}
           <div className="lg:col-span-7">
             <AnimateIn delay={0}>
-              <p className="text-xs font-body font-medium tracking-[0.25em] uppercase text-accent mb-8">
+              <span className="inline-block bg-accent/10 text-accent rounded px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-6">
                 {CONTENT.eyebrow}
-              </p>
+              </span>
             </AnimateIn>
 
             <AnimateIn delay={100}>
-              <h1 className="font-heading font-black text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] text-white mb-2">
-                <span className="bg-gradient-to-r from-brand-400 via-brand-500 to-brand-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
-                  {CONTENT.headline}
-                </span>
+              <h1 className="font-heading font-black text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.04em] text-white mb-2">
+                {CONTENT.headline}
               </h1>
-              <h1 className="font-heading font-black text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] text-white mb-10">
-                {CONTENT.headline2}
+              <h1 className="font-heading font-black text-[clamp(3.5rem,7vw,6.5rem)] leading-[0.92] tracking-[-0.04em] text-white mb-2">
+                <span className="bg-gradient-to-r from-accent to-amber-500 bg-clip-text text-transparent">
+                  {CONTENT.headline2}
+                </span>
               </h1>
             </AnimateIn>
 
             <AnimateIn delay={200}>
-              <p className="max-w-xl text-lg text-white/60 font-body leading-relaxed mb-10">
+              <p className="max-w-xl text-lg text-white/60 font-body leading-relaxed mb-10 mt-8">
                 {CONTENT.subline}
               </p>
             </AnimateIn>
 
             <AnimateIn delay={300}>
-              <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-12">
                 <div className="relative inline-flex">
-                  <div className="absolute inset-0 bg-brand-500/30 blur-xl rounded-md scale-110 pointer-events-none" />
+                  <div className="absolute inset-0 bg-accent/25 blur-xl rounded-md scale-110 pointer-events-none" />
                   <a
                     href={CONTENT.cta.href}
-                    className="relative px-8 py-4 font-body font-semibold bg-brand-500 text-white rounded-md hover:bg-brand-600 transition-all duration-300 ease-expo-out active:scale-[0.97]"
+                    className="relative px-8 py-4 font-body font-semibold bg-accent text-[#0f1a27] rounded-md hover:bg-accent/90 transition-all duration-300 ease-expo-out active:scale-[0.97]"
                   >
                     {CONTENT.cta.label}
                   </a>
@@ -78,6 +79,9 @@ export default function Hero() {
                   {CONTENT.secondary.label}
                 </a>
               </div>
+            </AnimateIn>
+
+            <AnimateIn delay={350}>
               <div className="flex flex-wrap items-center gap-6">
                 {CONTENT.credentials.map(c => (
                   <span key={c} className="text-xs font-body text-white/40 tracking-wide">{c}</span>
@@ -86,10 +90,10 @@ export default function Hero() {
             </AnimateIn>
           </div>
 
-          {/* Right — stats panel */}
+          {/* Right — dashboard mockup */}
           <AnimateIn delay={250} className="lg:col-span-5">
             <div className="relative">
-              {/* Dashboard mockup */}
+              {/* Main dashboard card */}
               <div className="rounded-lg border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6 shadow-card-lg">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -104,8 +108,8 @@ export default function Hero() {
                     <div key={i} className="flex-1 rounded-sm" style={{
                       height: `${h}%`,
                       background: i === 11
-                        ? 'linear-gradient(to top, #7C3AED, #818cf8)'
-                        : 'linear-gradient(to top, rgba(124,58,237,0.3), rgba(129,140,248,0.2))',
+                        ? 'linear-gradient(to top, #c9a84c, #d4af61)'
+                        : 'linear-gradient(to top, rgba(201,168,76,0.3), rgba(212,175,97,0.2))',
                     }} />
                   ))}
                 </div>
@@ -120,7 +124,7 @@ export default function Hero() {
                   <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
                     <div className="text-xs text-white/40 mb-1 font-body">AI Score</div>
                     <div className="font-heading font-bold text-white text-lg">94/100</div>
-                    <div className="text-xs text-brand-400 mt-0.5">Excellent</div>
+                    <div className="text-xs text-accent mt-0.5">Excellent</div>
                   </div>
                   <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
                     <div className="text-xs text-white/40 mb-1 font-body">Savings</div>
@@ -145,28 +149,25 @@ export default function Hero() {
                 </div>
               </div>
             </div>
-
-            {/* Stats grid below dashboard */}
-            <div className="grid grid-cols-2 gap-3 mt-4">
-              {CONTENT.stats.map((stat) => (
-                <div key={stat.label} className="p-5 rounded-md bg-white/[0.02] border border-white/5">
-                  <div className={cn(
-                    'font-heading font-bold text-display-sm mb-1',
-                    stat.accent ? 'text-accent' : 'text-white'
-                  )}>
-                    {stat.value}
-                  </div>
-                  <div className="text-xs font-body text-white/40 leading-snug">{stat.label}</div>
-                </div>
-              ))}
-            </div>
           </AnimateIn>
         </div>
 
-        {/* Bottom divider */}
-        <AnimateIn delay={400}>
-          <div className="mt-16 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        </AnimateIn>
+        {/* Stats row */}
+        <div className="mt-20 pt-10 border-t border-white/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {CONTENT.stats.map((stat, i) => (
+              <AnimateIn key={stat.label} delay={400 + i * 100}>
+                <div className="text-center lg:text-left">
+                  <div className="font-heading font-bold text-[clamp(2rem,4vw,3rem)] text-accent mb-2 min-h-[3rem] flex items-center justify-center lg:justify-start">
+                    {stat.prefix && <span className="text-accent/70 mr-1">{stat.prefix}</span>}
+                    <CountUp target={stat.value} decimals={stat.value % 1 !== 0 ? 1 : 0} suffix={stat.suffix} />
+                  </div>
+                  <div className="text-sm font-body text-white/50 tracking-wide uppercase">{stat.label}</div>
+                </div>
+              </AnimateIn>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   )

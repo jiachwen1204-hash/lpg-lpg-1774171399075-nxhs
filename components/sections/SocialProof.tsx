@@ -69,7 +69,7 @@ export default function SocialProof() {
 
         {/* Header */}
         <AnimateIn className="text-center mb-16">
-          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-pill px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-6">
+          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-md px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-3 font-body">
             Trusted by Industry Leaders
           </span>
           <h2 className="font-heading text-display-lg text-content-primary tracking-tight max-w-2xl mx-auto leading-tight">

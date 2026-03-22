@@ -61,7 +61,7 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-6">
         <AnimateIn className="max-w-2xl mb-16">
-          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-pill
+          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-md
                            px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-4">
             Our Capabilities
           </span>
@@ -72,11 +72,11 @@ export default function Services() {
           <p className="text-lg text-content-secondary leading-relaxed">{SUBTEXT}</p>
         </AnimateIn>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((svc, i) => (
             <AnimateIn key={svc.title} delay={i * 80}>
               <div className="group relative h-full rounded-card-lg overflow-hidden
-                              bg-surface-raised border border-surface-border/30
+                              bg-surface-raised border border-surface-border/30 shadow-card
                               hover:border-brand-500/30 hover:shadow-card-lg
                               transition-all duration-300 ease-expo-out">
                 <div className="absolute top-0 inset-x-0 h-px
@@ -85,7 +85,7 @@ export default function Services() {
                 <div className="absolute inset-0 bg-brand-500/0 group-hover:bg-brand-500/[0.03]
                                 rounded-card-lg transition-colors duration-300" />
 
-                <div className="relative p-7">
+                <div className="relative p-6 sm:p-8">
                   <div className="flex items-start justify-between mb-5">
                     <div className="w-11 h-11 rounded-card bg-brand-500/10
                                     flex items-center justify-center
@@ -94,7 +94,7 @@ export default function Services() {
                     </div>
                     {svc.tag && (
                       <span className="text-[10px] font-semibold uppercase tracking-widest
-                                       text-brand-500 bg-brand-500/10 rounded-pill px-2.5 py-1">
+                                       text-brand-500 bg-brand-500/10 rounded-md px-2.5 py-1">
                         {svc.tag}
                       </span>
                     )}
