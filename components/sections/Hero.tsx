@@ -1,235 +1,172 @@
-'use client'
-import { useEffect, useState } from 'react'
 import AnimateIn from '@/components/ui/AnimateIn'
-import { ArrowRight, TrendingUp, Users, Zap } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-// @lpg-hint: This is a tech/SaaS-style hero with a dashboard mockup on the right.
-// For a services business, swap the right column for a testimonial card or process diagram.
-// For a product company, show the product UI. The left/right split is a strong pattern —
-// but you could also do a full-width centered hero for a more editorial feel.
 const CONTENT = {
-  badge:     'Now in public beta',
-  headline:  'Build Faster.',
-  highlight: 'Ship Smarter.',
-  subline:   'The platform that turns your ideas into production-ready products — without the overhead.',
-  cta:       { label: 'Get Started Free', href: '#contact' },
-  secondary: { label: 'See How It Works', href: '#services' },
-  proof:     [
-    { value: '10k+',  label: 'Teams' },
-    { value: '99.9%', label: 'Uptime' },
-    { value: '<100ms',label: 'Latency' },
+  eyebrow: 'AI-Powered Financial Intelligence',
+  headline: 'Smarter money decisions',
+  headline2: 'through AI-powered insights',
+  subline: 'AI Money leverages artificial intelligence to simplify how individuals and businesses manage, grow, and optimise their money. Intelligent automation, predictive analytics, and real-time data processing deliver personalised financial insights, faster decision-making, and more efficient money management.',
+  cta: { label: 'Get Started Now', href: '#contact' },
+  secondary: { label: 'Our Solutions', href: '#services' },
+  stats: [
+    { value: '$500M+', label: 'Transaction volume', accent: true },
+    { value: '50,000+', label: 'Users protected', accent: false },
+    { value: '99.9%', label: 'Platform uptime', accent: true },
+    { value: '15+', label: 'Countries served', accent: false },
   ],
+  credentials: ['SOC 2 Certified', '256-bit Encryption', 'FCA Regulated'],
 }
 
-// @lpg-hint: The right-column mockup should reflect the company's actual product or service.
-// A fintech company could show a transaction dashboard; a logistics company a tracking map;
-// a consulting firm a project timeline. Make it feel real and industry-specific.
-const MOCK_METRICS = [
-  { label: 'Active Users',   value: '12,483', delta: '+18%',   color: 'text-green-400'  },
-  { label: 'Revenue Today',  value: '$48.2K', delta: '+$4.1K', color: 'text-green-400'  },
-  { label: 'Avg. Response',  value: '94ms',   delta: '−12ms',  color: 'text-brand-500'  },
-]
-
 export default function Hero() {
-  const [pulse, setPulse] = useState(false)
-  useEffect(() => {
-    const t = setInterval(() => setPulse(p => !p), 2000)
-    return () => clearInterval(t)
-  }, [])
-
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex items-center overflow-hidden bg-surface pt-nav"
-    >
-      {/* ── Background depth layers ─────────────────────────────────────── */}
-      {/* Primary glow orb — brand color always */}
-      <div
-        aria-hidden
-        className="absolute top-[-10%] left-[-5%] w-[700px] h-[700px] rounded-full
-                   bg-brand-500/10 blur-[200px] animate-pulse-glow pointer-events-none"
-      />
-      <div
-        aria-hidden
-        className="absolute bottom-[-15%] right-[-5%] w-[600px] h-[600px] rounded-full
-                   bg-brand-700/8 blur-[180px] pointer-events-none"
-      />
+    <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#0f1a27] pt-nav">
+      {/* Mesh glow orbs */}
+      <div aria-hidden className="absolute top-[-15%] left-[-8%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-[200px] animate-pulse-glow pointer-events-none" />
+      <div aria-hidden className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-brand-500/8 blur-[160px] pointer-events-none" />
+      <div aria-hidden className="absolute top-[40%] right-[20%] w-[400px] h-[400px] rounded-full bg-accent/5 blur-[120px] pointer-events-none" />
+
       {/* Dot grid texture */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.12]"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.18) 1px, transparent 1px)',
-          backgroundSize: '40px 40px',
-          maskImage: 'radial-gradient(ellipse 90% 80% at 50% 50%, black, transparent)',
-        }}
-      />
+      <div aria-hidden className="absolute inset-0 pointer-events-none opacity-[0.08]" style={{
+        backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px)',
+        backgroundSize: '40px 40px',
+        maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent)',
+      }} />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-section-lg w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-          {/* ── Left: Content ───────────────────────────────────────────── */}
-          <div>
+          {/* Left — primary content */}
+          <div className="lg:col-span-7">
             <AnimateIn delay={0}>
-              <div className="inline-flex items-center gap-2 bg-brand-500/10 text-brand-500
-                              rounded-pill px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-8">
-                <span className={`w-2 h-2 rounded-full bg-brand-500 transition-opacity duration-700 ${pulse ? 'opacity-100' : 'opacity-30'}`} />
-                {CONTENT.badge}
-              </div>
+              <p className="text-xs font-body font-medium tracking-[0.25em] uppercase text-accent mb-8">
+                {CONTENT.eyebrow}
+              </p>
             </AnimateIn>
 
-            <AnimateIn delay={80}>
-              <h1 className="font-heading font-black text-[clamp(3.2rem,6.5vw,6rem)]
-                             leading-[0.92] tracking-[-0.04em] text-content-primary mb-2">
-                {CONTENT.headline}
-              </h1>
-              <h1 className="font-heading font-black text-[clamp(3.2rem,6.5vw,6rem)]
-                             leading-[0.92] tracking-[-0.04em] mb-8">
-                <span className="bg-gradient-to-r from-brand-500 to-brand-400
-                                 bg-clip-text text-transparent italic">
-                  {CONTENT.highlight}
+            <AnimateIn delay={100}>
+              <h1 className="font-heading font-black text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] text-white mb-2">
+                <span className="bg-gradient-to-r from-brand-400 via-brand-500 to-brand-400 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+                  {CONTENT.headline}
                 </span>
               </h1>
+              <h1 className="font-heading font-black text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.05] tracking-[-0.03em] text-white mb-10">
+                {CONTENT.headline2}
+              </h1>
             </AnimateIn>
 
-            <AnimateIn delay={160}>
-              <p className="text-lg md:text-xl text-content-secondary font-light leading-relaxed
-                            max-w-md mb-10">
+            <AnimateIn delay={200}>
+              <p className="max-w-xl text-lg text-white/60 font-body leading-relaxed mb-10">
                 {CONTENT.subline}
               </p>
             </AnimateIn>
 
-            <AnimateIn delay={240}>
-              <div className="flex flex-col sm:flex-row items-start gap-4 mb-12">
-                {/* Primary CTA with glow behind */}
-                <div className="relative">
-                  <div className="absolute inset-0 bg-brand-500/25 blur-xl rounded-pill
-                                  scale-125 pointer-events-none" />
+            <AnimateIn delay={300}>
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-10">
+                <div className="relative inline-flex">
+                  <div className="absolute inset-0 bg-brand-500/30 blur-xl rounded-md scale-110 pointer-events-none" />
                   <a
                     href={CONTENT.cta.href}
-                    className="relative inline-flex items-center gap-2 px-7 py-3.5 font-body
-                               font-semibold bg-brand-500 text-content-inverse rounded-card
-                               hover:bg-brand-600 hover:shadow-glow transition-all ease-expo-out
-                               active:scale-[0.97]"
+                    className="relative px-8 py-4 font-body font-semibold bg-brand-500 text-white rounded-md hover:bg-brand-600 transition-all duration-300 ease-expo-out active:scale-[0.97]"
                   >
                     {CONTENT.cta.label}
-                    <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>
                 <a
                   href={CONTENT.secondary.href}
-                  className="inline-flex items-center gap-2 px-7 py-3.5 font-body font-medium
-                             border border-white/15 text-white/75 rounded-card
-                             hover:border-white/35 hover:text-white transition-all ease-expo-out"
+                  className="px-8 py-4 font-body font-medium border border-white/15 text-white/80 rounded-md hover:border-white/30 hover:text-white transition-all duration-300"
                 >
                   {CONTENT.secondary.label}
                 </a>
               </div>
-            </AnimateIn>
-
-            {/* Inline proof strip */}
-            <AnimateIn delay={320}>
-              <div className="flex items-center gap-8 pt-8 border-t border-white/8">
-                {CONTENT.proof.map(p => (
-                  <div key={p.label}>
-                    <div className="font-heading font-black text-2xl text-content-primary">
-                      {p.value}
-                    </div>
-                    <div className="text-xs text-content-muted mt-0.5 uppercase tracking-wider">
-                      {p.label}
-                    </div>
-                  </div>
+              <div className="flex flex-wrap items-center gap-6">
+                {CONTENT.credentials.map(c => (
+                  <span key={c} className="text-xs font-body text-white/40 tracking-wide">{c}</span>
                 ))}
               </div>
             </AnimateIn>
           </div>
 
-          {/* ── Right: Floating UI mockup ────────────────────────────────── */}
-          {/* @lpg-hint: Replace this mockup with something that reflects the company's
-              actual product or core value prop. A metrics dashboard works for B2B SaaS.
-              A before/after comparison works for agencies. A timeline works for services. */}
-          <AnimateIn delay={200} className="hidden lg:block">
+          {/* Right — stats panel */}
+          <AnimateIn delay={250} className="lg:col-span-5">
             <div className="relative">
-              {/* Main dashboard card */}
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04]
-                              backdrop-blur-sm shadow-card-xl overflow-hidden">
-                {/* Window chrome */}
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-white/8 bg-white/[0.02]">
-                  <span className="w-3 h-3 rounded-full bg-red-500/60" />
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/60" />
-                  <span className="w-3 h-3 rounded-full bg-green-500/60" />
-                  <span className="ml-4 text-xs text-white/30 font-mono">dashboard.app</span>
+              {/* Dashboard mockup */}
+              <div className="rounded-lg border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6 shadow-card-lg">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-3">
+                    <img src="https://u5ft5besqtymo1lf.public.blob.vercel-storage.com/logos/1774171397790-relax.png" alt="AI Money logo" className="h-8 w-auto object-contain" />
+                  </div>
+                  <span className="text-xs text-green-400/80 bg-green-400/10 px-2 py-1 rounded">Live</span>
                 </div>
-                <div className="p-6">
-                  {/* Metrics */}
-                  <div className="grid grid-cols-3 gap-3 mb-6">
-                    {MOCK_METRICS.map(m => (
-                      <div
-                        key={m.label}
-                        className="rounded-xl bg-white/[0.04] border border-white/6 p-3"
-                      >
-                        <div className="text-xs text-white/40 mb-1">{m.label}</div>
-                        <div className="font-heading font-bold text-white text-lg leading-none">
-                          {m.value}
-                        </div>
-                        <div className={`text-xs mt-1 ${m.color}`}>{m.delta}</div>
-                      </div>
-                    ))}
+
+                {/* Mock chart */}
+                <div className="flex items-end gap-1 h-24 mb-6">
+                  {[35, 55, 45, 70, 60, 85, 72, 90, 78, 95, 82, 100].map((h, i) => (
+                    <div key={i} className="flex-1 rounded-sm" style={{
+                      height: `${h}%`,
+                      background: i === 11
+                        ? 'linear-gradient(to top, #7C3AED, #818cf8)'
+                        : 'linear-gradient(to top, rgba(124,58,237,0.3), rgba(129,140,248,0.2))',
+                    }} />
+                  ))}
+                </div>
+
+                {/* Metrics row */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
+                    <div className="text-xs text-white/40 mb-1 font-body">Portfolio</div>
+                    <div className="font-heading font-bold text-white text-lg">$47,892</div>
+                    <div className="text-xs text-green-400/80 mt-0.5">+12.4%</div>
                   </div>
-                  {/* Fake sparkline chart */}
-                  <div className="flex items-end gap-1 h-20 mb-4">
-                    {[30,52,38,70,45,80,60,90,65,85,72,100].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-sm"
-                        style={{
-                          height: `${h}%`,
-                          background: `linear-gradient(to top, var(--brand-700), var(--brand-500))`,
-                          opacity: 0.25 + (i / 11) * 0.75,
-                        }}
-                      />
-                    ))}
+                  <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
+                    <div className="text-xs text-white/40 mb-1 font-body">AI Score</div>
+                    <div className="font-heading font-bold text-white text-lg">94/100</div>
+                    <div className="text-xs text-brand-400 mt-0.5">Excellent</div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-white/30">Last 12 months</span>
-                    <span className="text-xs text-brand-500 flex items-center gap-1">
-                      <TrendingUp className="w-3 h-3" /> +24% vs last year
-                    </span>
+                  <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
+                    <div className="text-xs text-white/40 mb-1 font-body">Savings</div>
+                    <div className="font-heading font-bold text-white text-lg">$3,241</div>
+                    <div className="text-xs text-accent/80 mt-0.5">This month</div>
                   </div>
                 </div>
               </div>
 
-              {/* Floating badge — top right */}
-              <div className="absolute -top-4 -right-4 animate-float">
-                <div className="rounded-xl border border-white/10 bg-white/[0.08]
-                                backdrop-blur-md p-3 flex items-center gap-2.5 shadow-card-lg">
+              {/* Floating security badge */}
+              <div className="absolute -top-4 -right-4 rounded-md border border-white/10 bg-[#0f1a27]/80 backdrop-blur-sm p-3 animate-float">
+                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
-                    <Users className="w-4 h-4 text-green-400" />
+                    <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white">New signup</div>
-                    <div className="text-xs text-white/40">just now</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating metric — bottom left */}
-              <div className="absolute -bottom-4 -left-4 animate-float [animation-delay:1.8s]">
-                <div className="rounded-xl border border-white/10 bg-white/[0.08]
-                                backdrop-blur-md p-3 flex items-center gap-2.5 shadow-card-lg">
-                  <div className="w-8 h-8 rounded-full bg-brand-500/20 flex items-center justify-center">
-                    <Zap className="w-4 h-4 text-brand-500" />
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-white">94ms avg response</div>
-                    <div className="text-xs text-brand-500">↓ 12ms from last week</div>
+                    <div className="text-xs font-semibold text-white">Secured</div>
+                    <div className="text-xs text-white/40">256-bit</div>
                   </div>
                 </div>
               </div>
             </div>
-          </AnimateIn>
 
+            {/* Stats grid below dashboard */}
+            <div className="grid grid-cols-2 gap-3 mt-4">
+              {CONTENT.stats.map((stat) => (
+                <div key={stat.label} className="p-5 rounded-md bg-white/[0.02] border border-white/5">
+                  <div className={cn(
+                    'font-heading font-bold text-display-sm mb-1',
+                    stat.accent ? 'text-accent' : 'text-white'
+                  )}>
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-body text-white/40 leading-snug">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </AnimateIn>
         </div>
+
+        {/* Bottom divider */}
+        <AnimateIn delay={400}>
+          <div className="mt-16 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        </AnimateIn>
       </div>
     </section>
   )

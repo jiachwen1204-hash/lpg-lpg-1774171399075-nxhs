@@ -1,43 +1,34 @@
 import AnimateIn from '@/components/ui/AnimateIn'
-import { CheckCircle, TrendingUp, Users, Award, Globe } from 'lucide-react'
+import { CheckCircle, Cpu, Shield, Zap, BarChart3 } from 'lucide-react'
 
-// @lpg-hint: The About section tells the "why we exist" story, not a feature list.
-// Think: founding moment, mission, what makes the team uniquely qualified.
-// The left visual should reinforce the brand's personality — a dashboard for SaaS,
-// a portfolio grid for agencies, a process diagram for consultancies.
 const CONTENT = {
-  label:   'About Us',
-  heading: 'Built by Practitioners,\nfor Practitioners',
+  label:   'About AI Money',
+  heading: 'Intelligence Meets\nFinancial Innovation',
   body: [
-    'We started this company because we kept running into the same problem: powerful tools existed, but none of them worked the way humans actually think.',
-    'We obsessed over every detail until we had something we\'d genuinely use ourselves — then opened it up to the world.',
+    'AI Money was founded on a singular vision: to democratize access to intelligent financial services. By combining cutting-edge artificial intelligence with deep financial expertise, we transform complex financial processes into seamless digital experiences.',
+    'Our platform empowers individuals and businesses to make smarter decisions — from automated budgeting and investment recommendations to fraud detection and risk assessment — all powered by real-time data processing and predictive analytics.',
   ],
   values: [
-    'Automation-first — eliminate manual work at the root',
-    'Data you can trust, presented the way you think',
-    'User experience that respects your time and intelligence',
-    'Enterprise security without enterprise complexity',
+    'Intelligent automation that eliminates manual financial complexity',
+    'Predictive analytics delivering actionable insights in real-time',
+    'Enterprise-grade security with user-friendly accessibility',
+    'Personalized financial intelligence adapted to your unique needs',
   ],
-  cta: { label: 'Meet the Team', href: '#contact' },
+  cta: { label: 'Get Started Now', href: '#contact' },
 }
 
-// @lpg-hint: These floating metric cards appear on the left visual panel.
-// Replace them with real company milestones or platform metrics.
-// Use specific, credible numbers — "47% faster" is better than "much faster".
 const FLOAT_STATS = [
-  { icon: TrendingUp, value: '47%',   label: 'Average time saved',      color: 'text-green-400' },
-  { icon: Users,      value: '12k+',  label: 'Active teams worldwide',   color: 'text-brand-500' },
-  { icon: Award,      value: '4.9★',  label: 'G2 customer rating',       color: 'text-yellow-400' },
-  { icon: Globe,      value: '99.9%', label: 'Uptime SLA',               color: 'text-brand-400' },
+  { icon: BarChart3, value: '99.7%', label: 'Analysis accuracy rate',    color: 'text-brand-500' },
+  { icon: Zap,       value: '3.2s',  label: 'Avg. processing time',     color: 'text-accent'    },
+  { icon: Shield,     value: '89%',   label: 'Risk reduction achieved',  color: 'text-brand-500' },
+  { icon: Cpu,       value: '50ms',  label: 'Real-time latency',        color: 'text-accent'    },
 ]
 
-// @lpg-hint: These are the bottom stat cards. Keep them to 4 max.
-// Use the most impressive, most credible numbers the company has.
 const STATS = [
-  { value: '12k+', label: 'Teams Using Platform' },
-  { value: '$2B+', label: 'Revenue Processed'     },
-  { value: '99.9%', label: 'Platform Uptime'      },
-  { value: '180+', label: 'Countries Served'      },
+  { value: '10k+', label: 'Active Users Worldwide' },
+  { value: '$500M+', label: 'Transactions Processed'  },
+  { value: '99.9%', label: 'Platform Uptime'          },
+  { value: '180+',  label: 'Countries Served'        },
 ]
 
 export default function About() {
@@ -47,24 +38,23 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
 
           {/* ── Left: Visual panel ─────────────────────────────────────── */}
-          {/* @lpg-hint: This panel should feel like a window into the product or brand.
-              For a design agency: a portfolio thumbnail grid. For a law firm: an awards shelf.
-              For a restaurant: a signature dish image with ingredient labels floating around it. */}
           <AnimateIn direction="left">
             <div className="relative">
               {/* Main panel */}
-              <div className="relative rounded-2xl border border-white/10 bg-white/[0.03]
-                              backdrop-blur-sm p-8 min-h-[380px] flex flex-col justify-center">
-                {/* Background brand glow */}
+              <div className="relative rounded-2xl border border-surface-border/40 bg-surface-raised
+                              shadow-card p-8 min-h-[380px] flex flex-col justify-center">
+                {/* Background gradient accent */}
                 <div aria-hidden
-                     className="absolute inset-0 rounded-2xl bg-brand-500/5 pointer-events-none" />
+                     className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-500/[0.03] to-transparent pointer-events-none" />
                 {/* Central brand mark */}
                 <div className="text-center">
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl
-                                  bg-brand-500/15 border border-brand-500/20 mb-4">
-                    <span className="font-heading font-black text-3xl text-brand-500">A</span>
-                  </div>
-                  <p className="text-sm text-content-muted">Founded 2019 · San Francisco</p>
+                  <img
+                    src="https://u5ft5besqtymo1lf.public.blob.vercel-storage.com/logos/1774171397790-relax.png"
+                    alt="AI Money logo"
+                    className="h-16 w-auto object-contain mx-auto mb-4"
+                  />
+                  <p className="text-sm text-content-muted">AI-Powered Financial Intelligence</p>
+                  <p className="text-xs text-content-muted mt-1">B5-1-3, Forest Green Condominium<br />Bandar Sungai Long, Malaysia</p>
                 </div>
               </div>
 
@@ -83,15 +73,15 @@ export default function About() {
                     className={`absolute ${positions[i]} animate-float`}
                     style={{ animationDelay: delays[i] }}
                   >
-                    <div className="rounded-xl border border-white/10 bg-white/[0.08]
+                    <div className="rounded-xl border border-surface-border/40 bg-surface-raised
                                     backdrop-blur-md p-3 flex items-center gap-2.5 shadow-card-lg
                                     min-w-[150px]">
-                      <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-brand-500/10 flex items-center justify-center shrink-0">
                         <s.icon className={`w-4 h-4 ${s.color}`} />
                       </div>
                       <div>
                         <div className={`text-sm font-bold ${s.color} leading-none`}>{s.value}</div>
-                        <div className="text-xs text-white/40 mt-0.5">{s.label}</div>
+                        <div className="text-xs text-content-muted mt-0.5">{s.label}</div>
                       </div>
                     </div>
                   </div>
@@ -106,12 +96,12 @@ export default function About() {
                              text-brand-500 bg-brand-500/10 rounded-pill px-4 py-1.5 mb-4">
               {CONTENT.label}
             </span>
-            <h2 className="font-heading font-black text-display-lg text-content-primary
+            <h2 className="font-heading font-bold text-display-lg text-content-primary
                            leading-tight tracking-[-0.025em] mb-6 whitespace-pre-line">
               {CONTENT.heading}
             </h2>
             {CONTENT.body.map((p, i) => (
-              <p key={i} className="text-content-secondary leading-relaxed mb-4">
+              <p key={i} className="text-content-secondary leading-relaxed mb-4 max-w-2xl">
                 {p}
               </p>
             ))}
@@ -119,7 +109,7 @@ export default function About() {
             <ul className="mt-6 space-y-3 mb-8">
               {CONTENT.values.map(v => (
                 <li key={v} className="flex items-start gap-3 text-sm text-content-primary">
-                  <CheckCircle className="w-5 h-5 text-brand-500 shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                   <span>{v}</span>
                 </li>
               ))}
@@ -131,7 +121,7 @@ export default function About() {
               <a
                 href={CONTENT.cta.href}
                 className="relative inline-flex items-center gap-2 px-6 py-3 font-body
-                           font-semibold bg-brand-500 text-content-inverse rounded-card
+                           font-semibold bg-brand-500 text-white rounded-card
                            hover:bg-brand-600 hover:shadow-glow-sm transition-all ease-expo-out"
               >
                 {CONTENT.cta.label}
@@ -150,7 +140,7 @@ export default function About() {
                 <div className="absolute top-0 inset-x-0 h-px
                                 bg-gradient-to-r from-transparent via-brand-500/40 to-transparent
                                 group-hover:via-brand-500/70 transition-all duration-500" />
-                <div className="font-heading font-black text-display-md text-brand-500 mb-1">
+                <div className="font-heading font-bold text-display-md text-brand-500 mb-1">
                   {s.value}
                 </div>
                 <div className="text-xs text-content-muted uppercase tracking-wider">{s.label}</div>

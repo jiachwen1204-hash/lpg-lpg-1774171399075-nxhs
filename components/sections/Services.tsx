@@ -1,64 +1,58 @@
 import AnimateIn from '@/components/ui/AnimateIn'
-import { Zap, Shield, BarChart3, Layers, Globe, Lock } from 'lucide-react'
+import { Sparkles, TrendingUp, ShieldCheck, CreditCard, Wallet, Brain } from 'lucide-react'
 
-// @lpg-hint: Three-column equal cards work well for 3–4 services.
-// For 5–7 services, consider a 2-col featured layout (one large card + smaller grid).
-// For very different-weight services, consider a numbered list layout instead.
 const services = [
   {
-    icon: Zap,
-    title: 'Intelligent Automation',
+    icon: Sparkles,
+    title: 'Automated Budgeting',
     description:
-      'Eliminate repetitive work with smart workflows that learn from your processes and scale with your team.',
-    tag: 'Most Popular',
-  },
-  {
-    icon: BarChart3,
-    title: 'Data Intelligence',
-    description:
-      'Turn raw data into clear decisions. Real-time analytics, custom dashboards, and actionable insights.',
+      'Intelligent automation that categorizes expenses, tracks spending patterns, and creates personalized budgets that adapt to your financial behavior in real time.',
     tag: null,
   },
   {
-    icon: Shield,
-    title: 'Enterprise Security',
+    icon: Brain,
+    title: 'Smart Investment Recommendations',
     description:
-      'Bank-grade encryption, audit logs, and role-based access controls built into every layer of the platform.',
+      'AI-powered insights that analyze market trends and your risk profile to deliver personalized investment strategies aligned with your financial goals.',
+    tag: 'Core Service',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Fraud Detection',
+    description:
+      'Advanced machine learning algorithms continuously monitor transactions to identify anomalies, prevent unauthorized access, and protect your assets 24/7.',
     tag: null,
   },
   {
-    icon: Globe,
-    title: 'Global Infrastructure',
+    icon: TrendingUp,
+    title: 'Credit Scoring',
     description:
-      'Deploy to 20+ regions worldwide. Sub-100ms response times and 99.99% uptime guaranteed by SLA.',
+      'Dynamic credit assessment that evaluates multiple financial data points to provide accurate, fair, and transparent credit scoring for better loan outcomes.',
     tag: null,
   },
   {
-    icon: Layers,
-    title: 'Seamless Integrations',
+    icon: CreditCard,
+    title: 'Digital Payment Optimization',
     description:
-      'Connect to 200+ tools out of the box. REST API and webhooks for anything not in the library.',
+      'Streamlined payment processing with intelligent routing, fee optimization, and predictive cash flow management for businesses of all sizes.',
     tag: null,
   },
   {
-    icon: Lock,
-    title: 'Compliance Ready',
+    icon: Wallet,
+    title: 'Wealth Growth Intelligence',
     description:
-      'SOC 2 Type II, GDPR, and HIPAA compliant by default. Compliance reports generated automatically.',
+      'Personalized savings strategies and wealth accumulation plans powered by predictive analytics to maximize your financial potential over time.',
     tag: null,
   },
 ]
 
-// @lpg-hint: Adapt the heading to the company's actual value framing.
-// "What We Offer" is generic — something like "Everything Your Team Needs" or
-// "The Stack Behind 10,000 Teams" is stronger.
-const HEADING = 'Everything You Need'
-const SUBTEXT = 'One platform. Every capability your team needs to move faster and work smarter.'
+const HEADING = 'AI-Powered Financial Intelligence'
+const SUBTEXT =
+  'Transforming complex financial processes into seamless digital experiences — helping individuals and businesses save time, reduce risk, and unlock better financial opportunities through advanced AI technology.'
 
 export default function Services() {
   return (
     <section id="services" className="py-section bg-surface relative overflow-hidden">
-      {/* Subtle top accent glow */}
       <div
         aria-hidden
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[1px]
@@ -66,11 +60,10 @@ export default function Services() {
       />
 
       <div className="max-w-7xl mx-auto px-6">
-        {/* Section header */}
         <AnimateIn className="max-w-2xl mb-16">
           <span className="inline-block bg-brand-500/10 text-brand-500 rounded-pill
                            px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-4">
-            What We Do
+            Our Capabilities
           </span>
           <h2 className="font-heading font-black text-display-lg text-content-primary
                          leading-tight tracking-[-0.025em] mb-4">
@@ -79,7 +72,6 @@ export default function Services() {
           <p className="text-lg text-content-secondary leading-relaxed">{SUBTEXT}</p>
         </AnimateIn>
 
-        {/* Card grid — 3 cols on lg, 2 on md */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((svc, i) => (
             <AnimateIn key={svc.title} delay={i * 80}>
@@ -87,16 +79,13 @@ export default function Services() {
                               bg-surface-raised border border-surface-border/30
                               hover:border-brand-500/30 hover:shadow-card-lg
                               transition-all duration-300 ease-expo-out">
-                {/* Top accent line — lights up on hover */}
                 <div className="absolute top-0 inset-x-0 h-px
                                 bg-gradient-to-r from-transparent via-brand-500/40 to-transparent
                                 group-hover:via-brand-500/80 transition-all duration-500" />
-                {/* Inner hover glow */}
                 <div className="absolute inset-0 bg-brand-500/0 group-hover:bg-brand-500/[0.03]
                                 rounded-card-lg transition-colors duration-300" />
 
                 <div className="relative p-7">
-                  {/* Icon + tag row */}
                   <div className="flex items-start justify-between mb-5">
                     <div className="w-11 h-11 rounded-card bg-brand-500/10
                                     flex items-center justify-center

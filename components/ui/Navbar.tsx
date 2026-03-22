@@ -12,20 +12,14 @@ import { cn } from '@/lib/utils'
 //   #services → <section id="services">  (Services.tsx)
 //   #about    → <section id="about">     (About.tsx)
 //   #contact  → <section id="contact">   (CTA.tsx)
-//
-// You may rename the labels to fit the company's language:
-//   "Solutions", "What We Do", "Our Work"  →  all valid labels for #services
-//   "Our Story", "Who We Are", "The Team"  →  all valid labels for #about
-//   "Get Started", "Work With Us"          →  all valid labels for #contact
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'About',    href: '#about'    },
-  { label: 'Contact',  href: '#contact'  },
+  { label: 'Solutions',  href: '#services' },
+  { label: 'About Us',   href: '#about'    },
+  { label: 'Contact',    href: '#contact'  },
 ]
 
-// @lpg-hint: Brand name = company name. CTA label = primary action verb.
-const BRAND_NAME = 'Acme'
-const CTA = { label: 'Get Started', href: '#contact' }
+const BRAND_NAME = 'AI Money'
+const CTA = { label: 'Get Started Now', href: '#contact' }
 
 export default function Navbar() {
   const [scrolled, setScrolled]  = useState(false)
@@ -38,7 +32,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Update active nav link as user scrolls through sections
   useEffect(() => {
     const ids = navLinks.map(l => l.href.replace('#', ''))
     const observer = new IntersectionObserver(
@@ -66,7 +59,6 @@ export default function Navbar() {
           : 'bg-transparent',
       )}
     >
-      {/* Bottom gradient line when scrolled */}
       {scrolled && (
         <div className="absolute bottom-0 inset-x-0 h-px
                         bg-gradient-to-r from-transparent via-surface-border to-transparent" />
@@ -74,12 +66,15 @@ export default function Navbar() {
 
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between h-nav">
         {/* Brand */}
-        <Link
-          href="/"
-          className="font-heading font-bold text-xl text-content-primary
-                     hover:text-brand-500 transition-colors"
-        >
-          {BRAND_NAME}
+        <Link href="/" className="flex items-center gap-3 group">
+          <img
+            src="https://u5ft5besqtymo1lf.public.blob.vercel-storage.com/logos/1774171397790-relax.png"
+            alt="AI Money logo"
+            className="h-9 w-auto object-contain"
+          />
+          <span className="font-heading font-bold text-lg text-content-primary group-hover:text-brand-500 transition-colors">
+            {BRAND_NAME}
+          </span>
         </Link>
 
         {/* Desktop links */}
@@ -89,10 +84,13 @@ export default function Navbar() {
               <a
                 href={link.href}
                 className={cn(
-                  'px-4 py-2 text-sm rounded-card transition-colors',
+                  'px-4 py-2 text-sm rounded-card transition-colors relative',
+                  'after:absolute after:bottom-1 after:left-4 after:right-4 after:h-px',
+                  'after:bg-brand-500 after:scale-x-0 after:transition-transform after:duration-300',
+                  'hover:after:scale-x-100',
                   activeHash === link.href
-                    ? 'text-brand-500 bg-brand-500/8'
-                    : 'text-content-muted hover:text-content-primary hover:bg-surface-raised',
+                    ? 'text-brand-500'
+                    : 'text-content-muted hover:text-content-primary',
                 )}
               >
                 {link.label}
@@ -105,8 +103,8 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <a
             href={CTA.href}
-            className="px-5 py-2 text-sm font-semibold bg-brand-500 text-content-inverse
-                       rounded-card hover:bg-brand-600 hover:shadow-glow-sm
+            className="relative px-5 py-2.5 text-sm font-semibold bg-brand-500 text-white
+                       rounded-md hover:bg-brand-700 hover:shadow-glow-sm
                        transition-all ease-expo-out active:scale-[0.97]"
           >
             {CTA.label}
@@ -150,8 +148,8 @@ export default function Navbar() {
                 href={CTA.href}
                 onClick={() => setOpen(false)}
                 className="block px-5 py-3 text-sm font-semibold text-center
-                           bg-brand-500 text-content-inverse rounded-card
-                           hover:bg-brand-600 transition-colors"
+                           bg-brand-500 text-white rounded-md
+                           hover:bg-brand-700 transition-colors"
               >
                 {CTA.label}
               </a>

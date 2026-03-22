@@ -2,20 +2,21 @@
 import { useEffect, useRef, useState } from 'react'
 import AnimateIn from '@/components/ui/AnimateIn'
 
-// @lpg-hint: Stats work best when they tell a progression story.
-// Order them: volume → quality → speed → scale.
-// "12B+ transactions" then "99.9% accuracy" then "<100ms latency" tells a better
-// story than four unrelated numbers. Make each stat answer a buyer question.
-const stats = [
-  { value: 12000, suffix: 'B+', label: 'Transactions Processed', prefix: '' },
-  { value: 99.9,  suffix: '%',  label: 'Platform Uptime',        prefix: '' },
-  { value: 47,    suffix: '%',  label: 'Faster Than Alternatives',prefix: '' },
-  { value: 180,   suffix: '+',  label: 'Countries Served',        prefix: '' },
+interface StatItem {
+  value: number
+  suffix: string
+  label: string
+  prefix?: string
+}
+
+const stats: StatItem[] = [
+  { value: 2.4, suffix: 'B+', label: 'Transaction Value Managed', prefix: '$' },
+  { value: 99.7, suffix: '%', label: 'Prediction Accuracy' },
+  { value: 340, suffix: '%', label: 'Average ROI Increase' },
+  { value: 50, suffix: 'K+', label: 'Active Users', prefix: '' },
 ]
 
-// IMPORTANT: CountUp is the ONLY number rendered. Never add a static copy of
-// the same number as a background element — it creates visible duplicates.
-function CountUp({ target, suffix, prefix }: { target: number; suffix: string; prefix: string }) {
+function CountUp({ target, suffix, prefix = '' }: { target: number; suffix: string; prefix?: string }) {
   const [count, setCount] = useState(0)
   const ref = useRef<HTMLSpanElement>(null)
 
@@ -55,51 +56,52 @@ function CountUp({ target, suffix, prefix }: { target: number; suffix: string; p
 export default function Stats() {
   return (
     <section className="py-section bg-surface relative overflow-hidden">
-      {/* Dot grid texture for section background variation */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.07]"
+        className="absolute inset-0 pointer-events-none opacity-[0.04]"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
+          backgroundImage: 'radial-gradient(circle, rgba(124,58,237,0.3) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
         }}
       />
-      {/* Center ambient glow */}
       <div
         aria-hidden
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                   w-[500px] h-[300px] rounded-full bg-brand-500/8 blur-[120px]
+                   w-[700px] h-[400px] rounded-full bg-brand-500/6 blur-[140px]
                    pointer-events-none"
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        {/* @lpg-hint: The section label here is intentionally minimal —
-            let the numbers speak. You can add a small heading if the stats
-            need context, e.g. "Numbers That Define Us" or "The Scale We Operate At". */}
-        <AnimateIn className="text-center mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-content-muted">
-            Our Impact
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <AnimateIn className="text-center mb-16">
+          <span className="inline-block bg-brand-500/10 text-brand-500 rounded-pill
+                           px-4 py-1.5 text-xs font-semibold uppercase tracking-widest mb-5">
+            By the Numbers
+          </span>
+          <h2 className="font-heading font-bold text-display-lg text-content-primary tracking-tight">
+            Performance That Speaks for Itself
+          </h2>
+          <p className="mt-4 text-content-secondary max-w-2xl mx-auto leading-relaxed">
+            AI Money&apos;s intelligent platform delivers measurable results across every dimension of financial management.
           </p>
         </AnimateIn>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <AnimateIn key={stat.label} delay={i * 100}>
-              <div className="group relative rounded-card-lg border border-surface-border/30
-                              bg-surface-raised p-8 text-center overflow-hidden
-                              hover:border-brand-500/30 hover:shadow-card-lg
-                              transition-all duration-300">
-                {/* Top accent line */}
+              <div className="group relative rounded-card-lg bg-surface-raised p-8 text-center
+                              shadow-card hover:shadow-card-lg
+                              transition-all duration-500 ease-out">
                 <div className="absolute top-0 inset-x-0 h-px
-                                bg-gradient-to-r from-transparent via-brand-500/40 to-transparent
-                                group-hover:via-brand-500/80 transition-all duration-500" />
+                                bg-gradient-to-r from-transparent via-brand-500/30 to-transparent
+                                group-hover:via-brand-500/60 group-hover:h-[2px]
+                                transition-all duration-500" />
 
-                {/* CountUp value — min-h prevents layout shift during animation */}
-                <div className="font-heading font-black text-display-md text-brand-500
-                                mb-2 min-h-[3.5rem] flex items-center justify-center">
+                <div className="font-heading font-bold text-display-md text-accent
+                                mb-3 min-h-[3.5rem] flex items-center justify-center
+                                group-hover:scale-105 transition-transform duration-300">
                   <CountUp target={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
                 </div>
-                <div className="text-xs text-content-muted uppercase tracking-wider leading-snug">
+                <div className="text-sm text-content-secondary font-medium leading-relaxed">
                   {stat.label}
                 </div>
               </div>
