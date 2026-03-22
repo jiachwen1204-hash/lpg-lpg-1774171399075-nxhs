@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+/* ─── Brand scale (derived via color-mix from brand-500 / brand-700) ─── */
+:root {
+  --brand-50:  color-mix(in srgb, #7C3AED  5%, white);
+  --brand-100: color-mix(in srgb, #7C3AED 12%, white);
+  --brand-200: color-mix(in srgb, #7C3AED 25%, white);
+  --brand-300: color-mix(in srgb, #7C3AED 50%, white);
+  --brand-400: color-mix(in srgb, #7C3AED 75%, white);
+  --brand-500: #7C3AED;
+  --brand-600: color-mix(in srgb, #7C3AED 82%, black);
+  --brand-700: #4C1D95;
+  --brand-800: color-mix(in srgb, #4C1D95 80%, black);
+  --brand-900: color-mix(in srgb, #4C1D95 60%, black);
+  --brand-950: color-mix(in srgb, #4C1D95 40%, black);
+
+  /* Archetype accent — always equals brand-500 so user's chosen color dominates everywhere.
+     Components MUST use bg-brand-500/text-brand-500 for all primary brand expression.
+     --accent is kept as an alias so legacy class references still resolve correctly. */
+  --accent:     #7C3AED;
+  --brand-glow: color-mix(in srgb, #7C3AED 40%, transparent);
+
+  /* ─── Surfaces ─────────────────────────────────────────────────────── */
+  --surface-default:       #ffffff;
+  --surface-raised:        #f8f9fb;
+  --surface-overlay:       color-mix(in srgb, #f8f9fb 96%, #7C3AED);
+  --surface-border:        color-mix(in srgb, #7C3AED 12%, transparent);
+  --surface-border-strong: color-mix(in srgb, #7C3AED 28%, transparent);
+
+  /* ─── Content ──────────────────────────────────────────────────────── */
+  --content-primary:   #0f1a27;
+  --content-secondary: color-mix(in srgb, #0f1a27 65%, transparent);
+  --content-muted:     #718096;
+  --content-inverse:   #0f172a;
+
+  /* ─── Font families (overridden by layout.tsx next/font/google classes) */
+  --font-heading: sans-serif;
+  --font-body:    sans-serif;
+  --font-mono:    monospace;
+
+  /* ─── Legacy aliases (keep for compatibility) ─────────────────────── */
+  --bg:     #ffffff;
+  --surface: #f8f9fb;
+  --text:   #0f1a27;
+  --muted:  #718096;
+  --border: #e2e5eb;
+
+  /* ─── Spacing / radius ─────────────────────────────────────────────── */
+  --spacing-section: 96px;
+  --spacing-gap:     24px;
+  --radius:          4px;
+}
+
+@layer base {
+  body {
+    background-color: var(--surface-default);
+    color: var(--content-primary);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
