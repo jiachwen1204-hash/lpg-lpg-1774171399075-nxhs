@@ -1,5 +1,4 @@
 import AnimateIn from '@/components/ui/AnimateIn'
-import CountUp from '@/components/ui/CountUp'
 import { cn } from '@/lib/utils'
 
 const CONTENT = {
@@ -18,15 +17,25 @@ const CONTENT = {
   credentials: ['SOC 2 Certified', '256-bit Encryption', 'FCA Regulated'],
 }
 
+function StatValue({ stat }: { stat: { value: number; prefix?: string; suffix?: string } }) {
+  const decimals = stat.value % 1 !== 0 ? 1 : 0
+  const displayValue = decimals > 0 ? stat.value.toFixed(decimals) : stat.value.toString()
+  return (
+    <>
+      {stat.prefix && <span className="text-accent/70 mr-1">{stat.prefix}</span>}
+      {displayValue}
+      {stat.suffix}
+    </>
+  )
+}
+
 export default function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-[#0f1a27] pt-nav">
-      {/* Mesh glow orbs */}
       <div aria-hidden className="absolute top-[-15%] left-[-8%] w-[800px] h-[800px] rounded-full bg-brand-500/10 blur-[200px] animate-pulse-glow pointer-events-none" />
       <div aria-hidden className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-brand-500/8 blur-[160px] pointer-events-none" />
       <div aria-hidden className="absolute top-[40%] right-[20%] w-[400px] h-[400px] rounded-full bg-accent/8 blur-[120px] pointer-events-none" />
 
-      {/* Dot grid texture */}
       <div aria-hidden className="absolute inset-0 pointer-events-none opacity-[0.08]" style={{
         backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.12) 1px, transparent 1px)',
         backgroundSize: '40px 40px',
@@ -36,7 +45,6 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-section-lg w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
 
-          {/* Left — primary content */}
           <div className="lg:col-span-7">
             <AnimateIn delay={0}>
               <span className="inline-block bg-accent/10 text-accent rounded px-4 py-1.5 text-xs font-medium uppercase tracking-widest mb-6">
@@ -90,10 +98,8 @@ export default function Hero() {
             </AnimateIn>
           </div>
 
-          {/* Right — dashboard mockup */}
           <AnimateIn delay={250} className="lg:col-span-5">
             <div className="relative">
-              {/* Main dashboard card */}
               <div className="rounded-lg border border-white/10 bg-white/[0.03] backdrop-blur-sm p-6 shadow-card-lg">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center gap-3">
@@ -102,7 +108,6 @@ export default function Hero() {
                   <span className="text-xs text-green-400/80 bg-green-400/10 px-2 py-1 rounded">Live</span>
                 </div>
 
-                {/* Mock chart */}
                 <div className="flex items-end gap-1 h-24 mb-6">
                   {[35, 55, 45, 70, 60, 85, 72, 90, 78, 95, 82, 100].map((h, i) => (
                     <div key={i} className="flex-1 rounded-sm" style={{
@@ -114,7 +119,6 @@ export default function Hero() {
                   ))}
                 </div>
 
-                {/* Metrics row */}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="rounded-md bg-white/[0.03] p-3 border border-white/5">
                     <div className="text-xs text-white/40 mb-1 font-body">Portfolio</div>
@@ -134,7 +138,6 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Floating security badge */}
               <div className="absolute -top-4 -right-4 rounded-md border border-white/10 bg-[#0f1a27]/80 backdrop-blur-sm p-3 animate-float">
                 <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
@@ -152,15 +155,13 @@ export default function Hero() {
           </AnimateIn>
         </div>
 
-        {/* Stats row */}
         <div className="mt-20 pt-10 border-t border-white/10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {CONTENT.stats.map((stat, i) => (
               <AnimateIn key={stat.label} delay={400 + i * 100}>
                 <div className="text-center lg:text-left">
                   <div className="font-heading font-bold text-[clamp(2rem,4vw,3rem)] text-accent mb-2 min-h-[3rem] flex items-center justify-center lg:justify-start">
-                    {stat.prefix && <span className="text-accent/70 mr-1">{stat.prefix}</span>}
-                    <CountUp target={stat.value} decimals={stat.value % 1 !== 0 ? 1 : 0} suffix={stat.suffix} />
+                    <StatValue stat={stat} />
                   </div>
                   <div className="text-sm font-body text-white/50 tracking-wide uppercase">{stat.label}</div>
                 </div>
